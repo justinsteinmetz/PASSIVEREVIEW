@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passive Voice — Revision v5 · Grade 8</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2336;
+    --border: #2a3050;
+    --accent: #4f8ef7;
+    --green: #3ecf8e;
+    --red: #f76f6f;
+    --amber: #f7c04f;
+    --purple: #b57bee;
+    --text: #e8ecf5;
+    --muted: #8a94b0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .75rem 2rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+    gap: .5rem;
+  }
+  .topbar .meta { font-size: .78rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .topbar h1 { font-family: var(--serif); font-size: 1.2rem; font-style: italic; }
+  .topbar-right { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+  .badge { background: var(--accent); color: #fff; font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .65rem; border-radius: 20px; }
+  .ver { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 20px; background: rgba(181,123,238,.18); color: var(--purple); border: 1px solid rgba(181,123,238,.3); }
+
+  /* WRAPPER */
+  .wrapper { max-width: 940px; margin: 0 auto; padding: 2rem 1.5rem 5rem; display: grid; gap: 2rem; }
+
+  /* RECAP */
+  .recap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .recap-header { padding: .9rem 1.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .recap-header h2 { font-family: var(--serif); font-size: 1.05rem; font-style: italic; }
+  .pill { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 20px; }
+  .pill-blue  { background: rgba(79,142,247,.15);  color: var(--accent);  border: 1px solid rgba(79,142,247,.28); }
+  .pill-green { background: rgba(62,207,142,.15);  color: var(--green);   border: 1px solid rgba(62,207,142,.28); }
+  .pill-amber { background: rgba(247,192,79,.15);  color: var(--amber);   border: 1px solid rgba(247,192,79,.28); }
+  .pill-purp  { background: rgba(181,123,238,.15); color: var(--purple);  border: 1px solid rgba(181,123,238,.28); }
+  .recap-body { padding: 1.2rem 1.4rem; }
+
+  .formula-line {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    padding: .85rem 1.2rem; font-family: var(--serif); font-size: 1.05rem; font-style: italic;
+    text-align: center; margin-bottom: 1rem;
+  }
+  .formula-line em { color: var(--accent); font-style: normal; }
+
+  /* TENSE GRID */
+  .tense-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .45rem; }
+  @media (max-width:640px) { .tense-grid { grid-template-columns: 1fr; } }
+  .tc { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: .7rem .9rem; font-size: .82rem; }
+  .tc .tn { font-size: .67rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: .25rem; }
+  .tc .tf { color: var(--accent); font-weight: 500; }
+  .tc .te { color: var(--muted); font-size: .78rem; font-style: italic; margin-top: .18rem; }
+
+  /* SPECIAL FORMS */
+  .special-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; margin-top: .8rem; }
+  @media (max-width:540px) { .special-grid { grid-template-columns: 1fr; } }
+  .sp-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 0 8px 8px 0; padding: .75rem .95rem; font-size: .82rem; }
+  .sp-card .sp-head { font-weight: 600; color: var(--purple); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .35rem; }
+  .sp-card .sp-form { color: var(--accent); font-size: .85rem; margin-bottom: .2rem; }
+  .sp-card .sp-eg { font-style: italic; color: var(--muted); font-size: .8rem; }
+
+  /* USES */
+  .uses { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; margin-top: .85rem; }
+  @media (max-width:540px) { .uses { grid-template-columns: 1fr; } }
+  .use-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: .65rem .9rem; font-size: .82rem; }
+  .use-item .uh { font-weight: 600; color: var(--amber); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .18rem; }
+  .use-item .ue { font-style: italic; color: var(--muted); }
+
+  /* SECTION */
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; }
+  .section-head { display: flex; align-items: center; gap: .7rem; margin-bottom: 1.1rem; }
+  .section-head h2 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; }
+  .num { width: 1.75rem; height: 1.75rem; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .num.g { background: var(--green); }
+  .num.a { background: var(--amber); color: #1a1008; }
+  .num.p { background: var(--purple); }
+  .num.r { background: var(--red); }
+  .section-note { font-size: .82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+
+  /* EXERCISE ITEMS */
+  .ex-list { display: grid; gap: .75rem; }
+  .ex-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: .95rem 1.1rem; }
+  .ex-q { font-size: .87rem; color: var(--text); margin-bottom: .5rem; }
+  .ex-q strong { color: var(--amber); }
+  .ex-sentence { font-style: italic; font-size: .93rem; color: #c2cce8; margin-bottom: .7rem; padding-left: .8rem; border-left: 2px solid var(--border); }
+  .ex-tag { display: inline-block; font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 3px; margin-bottom: .45rem; }
+  .tag-modal   { background: rgba(181,123,238,.18); color: var(--purple); border: 1px solid rgba(181,123,238,.28); }
+  .tag-perf    { background: rgba(79,142,247,.18);  color: var(--accent);  border: 1px solid rgba(79,142,247,.28); }
+  .tag-double  { background: rgba(247,192,79,.18);  color: var(--amber);   border: 1px solid rgba(247,192,79,.28); }
+  .tag-report  { background: rgba(62,207,142,.18);  color: var(--green);   border: 1px solid rgba(62,207,142,.28); }
+  .tag-cont    { background: rgba(247,111,111,.18); color: var(--red);     border: 1px solid rgba(247,111,111,.28); }
+
+  /* TEXT INPUT */
+  .answer-row { display: flex; gap: .5rem; align-items: flex-start; flex-wrap: wrap; }
+  .ans-input {
+    flex: 1; min-width: 180px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: .88rem;
+    padding: .38rem .75rem;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .ans-input:focus { border-color: var(--accent); }
+  .ans-input.checked-ok { border-color: var(--green); background: rgba(62,207,142,.06); }
+  .ans-input.checked-no { border-color: var(--red);   background: rgba(247,111,111,.06); }
+  .reveal-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    font-family: var(--sans); font-size: .78rem; padding: .35rem .8rem; border-radius: 5px;
+    cursor: pointer; transition: all .15s; white-space: nowrap;
+  }
+  .reveal-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .ex-answer {
+    display: none; margin-top: .6rem;
+    background: rgba(62,207,142,.06); border: 1px solid rgba(62,207,142,.22);
+    border-radius: 6px; padding: .6rem .9rem;
+    font-size: .87rem; color: var(--green); font-style: italic;
+  }
+  .ex-answer .ex-note { font-style: normal; font-size: .77rem; color: var(--muted); margin-top: .22rem; }
+  .ex-answer .alt { color: var(--amber); display: block; margin-top: .2rem; font-size: .83rem; }
+
+  /* TRICKY */
+  .tricky-grid { display: grid; gap: .7rem; }
+  .tricky-item { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: .85rem 1.05rem; font-size: .86rem; }
+  .t-head { font-weight: 600; color: var(--red); margin-bottom: .3rem; font-size: .83rem; }
+  .t-wrong { color: #f76f6f99; }
+  .t-wrong::before { content: '✗  '; }
+  .t-right { color: var(--green); margin-top: .12rem; }
+  .t-right::before { content: '✓  '; }
+  .t-explain { color: var(--muted); font-size: .78rem; margin-top: .35rem; font-style: italic; }
+
+  /* SPOT */
+  .err-sentence { font-style: italic; color: #c2cce8; font-size: .93rem; margin-bottom: .6rem; }
+
+  /* QUIZ */
+  .quiz-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: .95rem 1.1rem; margin-bottom: .75rem; }
+  .diff-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .55rem; }
+  .diff { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 3px; }
+  .diff-easy { background: rgba(62,207,142,.15); color: var(--green); border: 1px solid rgba(62,207,142,.28); }
+  .diff-med  { background: rgba(247,192,79,.15);  color: var(--amber); border: 1px solid rgba(247,192,79,.28); }
+  .diff-hard { background: rgba(247,111,111,.15); color: var(--red);   border: 1px solid rgba(247,111,111,.28); }
+  .q-text { font-size: .9rem; margin-bottom: .65rem; line-height: 1.5; }
+  .options { display: grid; gap: .3rem; }
+  .opt-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    font-family: var(--sans); font-size: .85rem; text-align: left;
+    padding: .5rem .9rem; border-radius: 6px; cursor: pointer; transition: all .15s;
+  }
+  .opt-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .opt-btn.correct { background: rgba(62,207,142,.1); border-color: var(--green); color: var(--green); }
+  .opt-btn.wrong   { background: rgba(247,111,111,.08); border-color: var(--red);  color: var(--red); }
+  .opt-btn:disabled { cursor: default; }
+  .q-feedback { margin-top: .45rem; font-size: .8rem; font-style: italic; display: none; }
+  .q-feedback.show { display: block; }
+  .q-feedback.ok { color: var(--green); }
+  .q-feedback.no { color: var(--red); }
+
+  /* SCORE */
+  #score-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.6rem; display: none; align-items: center; gap: 1.4rem; margin-top: .5rem; }
+  #score-num { font-family: var(--serif); font-size: 2.4rem; font-style: italic; color: var(--accent); white-space: nowrap; }
+  #score-msg { font-size: .9rem; color: var(--muted); line-height: 1.5; }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #111; font-size: 12pt; }
+    .topbar { position: static; background: #fff; border-bottom: 1.5pt solid #333; }
+    .topbar h1 { color: #111; }
+    .topbar .meta, .badge, .ver { color: #555; }
+    .wrapper { padding: 0; gap: 1.2rem; }
+    .panel, .recap { background: #fff; border: 1pt solid #ccc; break-inside: avoid; }
+    .tc, .sp-card, .use-item, .ex-item, .tricky-item, .quiz-item, .error-item { background: #f9f9f9; border: 1pt solid #ddd; }
+    .ans-input { background: #fff; border: 1pt solid #999; color: #111; }
+    .reveal-btn, .opt-btn { display: none; }
+    .ex-answer { display: block !important; background: #f0fff6; border: 1pt solid #aaa; color: #2a6644; }
+    .tc .tf, .formula-line em, .section-head .num { color: #2255aa; }
+    .t-right { color: #1a6b3a; }
+    .t-wrong  { color: #999; }
+    #score-bar { display: none !important; }
+  }
+
+  /* ANIM */
+  @keyframes up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .panel, .recap { animation: up .4s ease both; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="meta">Grade 8 · Grammar</span>
+  <h1>The Passive Voice</h1>
+  <div class="topbar-right">
+    <span class="badge">Revision</span>
+    <span class="ver">v5</span>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- ═══════════════ RECAP ═══════════════ -->
+  <div class="recap">
+    <div class="recap-header">
+      <h2>Quick Recap</h2>
+      <span class="pill pill-blue">Formula</span>
+      <span class="pill pill-amber">9 Tenses</span>
+      <span class="pill pill-purp">Special Forms</span>
+      <span class="pill pill-green">Uses</span>
+    </div>
+    <div class="recap-body">
+
+      <div class="formula-line">
+        Subject &nbsp;+&nbsp; <em>be</em> (correct tense) &nbsp;+&nbsp; Past Participle &nbsp;[ + by + agent ]
+      </div>
+
+      <div class="tense-grid">
+        <div class="tc"><div class="tn">Simple Present</div><div class="tf">is / are + p.p.</div><div class="te">The car is washed.</div></div>
+        <div class="tc"><div class="tn">Simple Past</div><div class="tf">was / were + p.p.</div><div class="te">The car was washed.</div></div>
+        <div class="tc"><div class="tn">Simple Future</div><div class="tf">will be + p.p.</div><div class="te">The car will be washed.</div></div>
+        <div class="tc"><div class="tn">Present Continuous</div><div class="tf">is/are being + p.p.</div><div class="te">The car is being washed.</div></div>
+        <div class="tc"><div class="tn">Past Continuous</div><div class="tf">was/were being + p.p.</div><div class="te">The car was being washed.</div></div>
+        <div class="tc"><div class="tn">Present Perfect</div><div class="tf">has/have been + p.p.</div><div class="te">The car has been washed.</div></div>
+        <div class="tc"><div class="tn">Past Perfect</div><div class="tf">had been + p.p.</div><div class="te">The car had been washed.</div></div>
+        <div class="tc"><div class="tn">Modal</div><div class="tf">modal + be + p.p.</div><div class="te">The car must be washed.</div></div>
+        <div class="tc"><div class="tn">Modal Perfect</div><div class="tf">modal + have been + p.p.</div><div class="te">The car should have been washed.</div></div>
+      </div>
+
+      <!-- SPECIAL FORMS -->
+      <div class="special-grid">
+        <div class="sp-card">
+          <div class="sp-head">Double Object</div>
+          <div class="sp-form">Two possible passive forms</div>
+          <div class="sp-eg">Active: They gave <u>her</u> <u>a prize</u>.<br>
+          → <em>She was given a prize.</em> ✓<br>
+          → <em>A prize was given to her.</em> ✓</div>
+        </div>
+        <div class="sp-card">
+          <div class="sp-head">Reporting Verbs</div>
+          <div class="sp-form">It is said / believed / thought…</div>
+          <div class="sp-eg">Active: People say he is wealthy.<br>
+          → <em>It is said that he is wealthy.</em><br>
+          → <em>He is said to be wealthy.</em></div>
+        </div>
+      </div>
+
+      <div class="uses">
+        <div class="use-item"><div class="uh">Unknown agent</div><div class="ue">My bike was stolen.</div></div>
+        <div class="use-item"><div class="uh">Agent obvious / unimportant</div><div class="ue">The suspect was arrested.</div></div>
+        <div class="use-item"><div class="uh">Formal / scientific</div><div class="ue">The samples were heated to 100°C.</div></div>
+        <div class="use-item"><div class="uh">Emphasise the receiver</div><div class="ue">The record was broken by Bolt.</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ A: ACTIVE → PASSIVE ═══════════════ -->
+  <div class="panel">
+    <div class="section-head"><div class="num">A</div><h2>Active → Passive</h2></div>
+    <p class="section-note">Write your answer in the box, then click <em>Show Answer</em> to check. Keep the same tense unless told otherwise.</p>
+    <div class="ex-list">
+
+      <div class="ex-item">
+        <div class="ex-q"><strong>1.</strong> Simple past</div>
+        <div class="ex-sentence">The manager approved the proposal.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The proposal was approved (by the manager).
+          <div class="ex-note">object → subject | approved → was approved</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-perf">Present Perfect</span>
+        <div class="ex-q"><strong>2.</strong></div>
+        <div class="ex-sentence">Someone has hacked the school's database.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The school's database has been hacked.
+          <div class="ex-note">Agent "someone" is unknown — omit it.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-cont">Past Continuous</span>
+        <div class="ex-q"><strong>3.</strong></div>
+        <div class="ex-sentence">Workers were repairing the road all night.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The road was being repaired all night (by workers).
+          <div class="ex-note">were repairing → was being repaired</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-modal">Modal</span>
+        <div class="ex-q"><strong>4.</strong></div>
+        <div class="ex-sentence">Students must hand in their projects by Friday.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Projects must be handed in by Friday.
+          <div class="ex-note">must hand in → must be handed in | agent "students" omitted — obvious.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-double">⚑ Double Object</span>
+        <div class="ex-q"><strong>5.</strong> Give <em>both</em> possible passive forms.</div>
+        <div class="ex-sentence">The school awarded Maria a scholarship.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Passive form 1…" style="margin-bottom:.3rem;">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Maria was awarded a scholarship (by the school).
+          <span class="alt">A scholarship was awarded to Maria (by the school).</span>
+          <div class="ex-note">Both are correct. The first (person as subject) is more natural in English.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="ex-q"><strong>6.</strong> Simple future</div>
+        <div class="ex-sentence">The government will build three new hospitals.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Three new hospitals will be built (by the government).</div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-perf">Past Perfect</span>
+        <div class="ex-q"><strong>7.</strong></div>
+        <div class="ex-sentence">The firefighters had already extinguished the fire when we arrived.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write passive form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The fire had already been extinguished (by the firefighters) when we arrived.
+          <div class="ex-note">had extinguished → had been extinguished</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-report">Reporting Verb</span>
+        <div class="ex-q"><strong>8.</strong> Transform using a reporting verb. Give <em>both</em> structures.</div>
+        <div class="ex-sentence">People believe that the treasure is buried on the island.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="It is believed that…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">It is believed that the treasure is buried on the island.
+          <span class="alt">The treasure is believed to be buried on the island.</span>
+          <div class="ex-note">Structure 1: It + passive reporting verb + that-clause. &nbsp;Structure 2: Subject + passive reporting verb + to-infinitive.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ B: PASSIVE → ACTIVE ═══════════════ -->
+  <div class="panel">
+    <div class="section-head"><div class="num g">B</div><h2>Passive → Active</h2></div>
+    <p class="section-note">Rewrite each sentence in the active voice. If no agent is given, use a suitable general subject.</p>
+    <div class="ex-list">
+
+      <div class="ex-item">
+        <div class="ex-q"><strong>1.</strong></div>
+        <div class="ex-sentence">The novel was written by Jane Austen in 1813.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write active form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Jane Austen wrote the novel in 1813.</div>
+      </div>
+
+      <div class="ex-item">
+        <div class="ex-q"><strong>2.</strong></div>
+        <div class="ex-sentence">The results will be announced by the committee tomorrow.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write active form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The committee will announce the results tomorrow.</div>
+      </div>
+
+      <div class="ex-item">
+        <div class="ex-q"><strong>3.</strong> No agent given — use a general subject.</div>
+        <div class="ex-sentence">The package had been delivered before we arrived.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write active form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Someone had delivered the package before we arrived.
+          <div class="ex-note">No "by" phrase → use "someone / they" as subject.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-cont">Continuous</span>
+        <div class="ex-q"><strong>4.</strong></div>
+        <div class="ex-sentence">The suspect was being questioned by the detectives for hours.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write active form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The detectives were questioning the suspect for hours.</div>
+      </div>
+
+      <div class="ex-item">
+        <span class="ex-tag tag-modal">Modal Perfect</span>
+        <div class="ex-q"><strong>5.</strong></div>
+        <div class="ex-sentence">The error should have been caught by the editor.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Write active form…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The editor should have caught the error.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ C: COMMON MISTAKES ═══════════════ -->
+  <div class="panel">
+    <div class="section-head"><div class="num r">C</div><h2>Common Mistakes</h2></div>
+    <div class="tricky-grid">
+
+      <div class="tricky-item">
+        <div class="t-head">Wrong "be" form for the tense</div>
+        <div class="t-wrong">The cake is baked yesterday.</div>
+        <div class="t-right">The cake was baked yesterday.</div>
+        <div class="t-explain">"Yesterday" signals past → use <em>was/were</em>.</div>
+      </div>
+
+      <div class="tricky-item">
+        <div class="t-head">Missing "been" in perfect forms</div>
+        <div class="t-wrong">The file has sent already.</div>
+        <div class="t-right">The file has been sent already.</div>
+        <div class="t-explain">Present perfect passive = has/have + <em>been</em> + p.p.</div>
+      </div>
+
+      <div class="tricky-item">
+        <div class="t-head">Past simple instead of past participle</div>
+        <div class="t-wrong">The door was broke by the wind.</div>
+        <div class="t-right">The door was broken by the wind.</div>
+        <div class="t-explain">"Broke" = simple past active. Passive needs the p.p.: <em>broken</em>.</div>
+      </div>
+
+      <div class="tricky-item">
+        <div class="t-head">Missing "being" in continuous passive</div>
+        <div class="t-wrong">The bridge is repaired at the moment.</div>
+        <div class="t-right">The bridge is being repaired at the moment.</div>
+        <div class="t-explain">Present continuous passive = is/are + <em>being</em> + p.p.</div>
+      </div>
+
+      <div class="tricky-item">
+        <div class="t-head">Using "been" in future passive</div>
+        <div class="t-wrong">The winners will been announced soon.</div>
+        <div class="t-right">The winners will be announced soon.</div>
+        <div class="t-explain">Future passive = will + <em>be</em> (not "been") + p.p.</div>
+      </div>
+
+      <div class="tricky-item">
+        <div class="t-head">Intransitive verbs cannot be passive</div>
+        <div class="t-wrong">The accident was happened on the highway.</div>
+        <div class="t-right">The accident happened on the highway.</div>
+        <div class="t-explain">Verbs like <em>happen, arrive, die, sleep</em> have no object — no passive possible.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ D: SPOT THE ERROR ═══════════════ -->
+  <div class="panel">
+    <div class="section-head"><div class="num a">D</div><h2>Spot &amp; Correct the Error</h2></div>
+    <p class="section-note">Each sentence has exactly one passive voice error. Write the corrected sentence, then check.</p>
+    <div class="ex-list">
+
+      <div class="ex-item">
+        <div class="err-sentence">1. The email has send to all parents this morning.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The email has <u>been sent</u> to all parents this morning.
+          <div class="ex-note">Present perfect passive = has + been + p.p.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="err-sentence">2. Three goals were score in the first half.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">Three goals were <u>scored</u> in the first half.
+          <div class="ex-note">Past participle of "score" = scored.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="err-sentence">3. The new policy will been announced next week.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The new policy will <u>be</u> announced next week.
+          <div class="ex-note">Future passive = will + be (not "been") + p.p.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="err-sentence">4. The injured player is being treated by the doctors at the hospital since Monday.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The injured player <u>has been treated</u> by the doctors since Monday.
+          <div class="ex-note">"Since Monday" → present perfect, not present continuous.</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="err-sentence">5. It is said that the missing painting has been stole from a private collection.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">It is said that the missing painting has been <u>stolen</u> from a private collection.
+          <div class="ex-note">Past participle of "steal" = stolen, not "stole".</div>
+        </div>
+      </div>
+
+      <div class="ex-item">
+        <div class="err-sentence">6. The children were gave a medal by the mayor at the ceremony.</div>
+        <div class="answer-row">
+          <input class="ans-input" type="text" placeholder="Corrected sentence…">
+          <button class="reveal-btn" onclick="reveal(this)">Show Answer</button>
+        </div>
+        <div class="ex-answer">The children were <u>given</u> a medal by the mayor at the ceremony.
+          <div class="ex-note">Past participle of "give" = given, not "gave".</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ E: MCQ QUIZ ═══════════════ -->
+  <div class="panel">
+    <div class="section-head"><div class="num p">E</div><h2>Quiz — 8 Questions</h2></div>
+    <p class="section-note">Questions progress from easier to harder. Choose the best answer.</p>
+
+    <!-- Q1 EASY -->
+    <div class="quiz-item" id="q1">
+      <div class="diff-row"><span class="diff diff-easy">Easy</span></div>
+      <div class="q-text">1. Which is the correct <strong>simple past passive</strong> of "They built the bridge in 1920"?</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q1',false,'Active voice.')">A. They built the bridge in 1920.</button>
+        <button class="opt-btn" onclick="answer(this,'q1',true,'Correct! was built = simple past passive.')">B. The bridge was built in 1920.</button>
+        <button class="opt-btn" onclick="answer(this,'q1',false,'Present perfect, not simple past.')">C. The bridge has been built in 1920.</button>
+        <button class="opt-btn" onclick="answer(this,'q1',false,'Missing "been" — this is not a valid form.')">D. The bridge was build in 1920.</button>
+      </div>
+      <div class="q-feedback" id="q1-fb"></div>
+    </div>
+
+    <!-- Q2 EASY -->
+    <div class="quiz-item" id="q2">
+      <div class="diff-row"><span class="diff diff-easy">Easy</span></div>
+      <div class="q-text">2. Which verb <strong>cannot</strong> be made passive?</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q2',false,'Transitive → "The letter was written."')">A. write</button>
+        <button class="opt-btn" onclick="answer(this,'q2',false,'Transitive → "The car was stolen."')">B. steal</button>
+        <button class="opt-btn" onclick="answer(this,'q2',true,'Correct! "Arrive" is intransitive — no object, so no passive.')">C. arrive</button>
+        <button class="opt-btn" onclick="answer(this,'q2',false,'Transitive → "The prize was won."')">D. win</button>
+      </div>
+      <div class="q-feedback" id="q2-fb"></div>
+    </div>
+
+    <!-- Q3 MEDIUM -->
+    <div class="quiz-item" id="q3">
+      <div class="diff-row"><span class="diff diff-med">Medium</span></div>
+      <div class="q-text">3. Choose the correct <strong>present continuous passive</strong>:</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q3',false,'Simple present passive, not continuous.')">A. The documents are checked.</button>
+        <button class="opt-btn" onclick="answer(this,'q3',true,'Correct! are being checked = present continuous passive.')">B. The documents are being checked.</button>
+        <button class="opt-btn" onclick="answer(this,'q3',false,'"Being check" uses the base form, not the past participle.')">C. The documents are being check.</button>
+        <button class="opt-btn" onclick="answer(this,'q3',false,'Past continuous, not present continuous.')">D. The documents were being checked.</button>
+      </div>
+      <div class="q-feedback" id="q3-fb"></div>
+    </div>
+
+    <!-- Q4 MEDIUM -->
+    <div class="quiz-item" id="q4">
+      <div class="diff-row"><span class="diff diff-med">Medium</span></div>
+      <div class="q-text">4. "You should return all library books by Friday." → Best passive form:</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q4',false,'Missing "be" — modal passive = modal + be + p.p.')">A. All library books should returned by Friday.</button>
+        <button class="opt-btn" onclick="answer(this,'q4',false,'"Been" is for perfect forms, not simple modal passive.')">B. All library books should been returned by Friday.</button>
+        <button class="opt-btn" onclick="answer(this,'q4',true,'Correct! should be returned = modal passive.')">C. All library books should be returned by Friday.</button>
+        <button class="opt-btn" onclick="answer(this,'q4',false,'Active voice.')">D. You should be returning all library books by Friday.</button>
+      </div>
+      <div class="q-feedback" id="q4-fb"></div>
+    </div>
+
+    <!-- Q5 MEDIUM -->
+    <div class="quiz-item" id="q5">
+      <div class="diff-row"><span class="diff diff-med">Medium</span></div>
+      <div class="q-text">5. Why is the passive preferred in: <em>"Three people were killed in the explosion."</em></div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q5',false,'The agent is unknown here, not obvious.')">A. The agent (cause) is obvious.</button>
+        <button class="opt-btn" onclick="answer(this,'q5',true,'Correct! The cause/killer is unknown; passive focuses attention on the victims.')">B. The agent is unknown; the focus is on those affected.</button>
+        <button class="opt-btn" onclick="answer(this,'q5',false,'This is a correct and appropriate use of passive.')">C. The passive is incorrect here — active is better.</button>
+        <button class="opt-btn" onclick="answer(this,'q5',false,'Not the main reason.')">D. To make the sentence sound more formal.</button>
+      </div>
+      <div class="q-feedback" id="q5-fb"></div>
+    </div>
+
+    <!-- Q6 HARD -->
+    <div class="quiz-item" id="q6">
+      <div class="diff-row"><span class="diff diff-hard">Hard</span></div>
+      <div class="q-text">6. "They gave Maria a prize." — Which passive transformation is <strong>incorrect</strong>?</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q6',false,'Correct passive — person as subject.')">A. Maria was given a prize.</button>
+        <button class="opt-btn" onclick="answer(this,'q6',false,'Correct passive — thing as subject.')">B. A prize was given to Maria.</button>
+        <button class="opt-btn" onclick="answer(this,'q6',true,'Incorrect! You cannot say "given to Maria a prize" — the word order is wrong.')">C. A prize was given to Maria by them is correct but "Maria was given to a prize" is also correct.</button>
+        <button class="opt-btn" onclick="answer(this,'q6',false,'Correct — both A and B are valid passive forms of this sentence.')">D. Both A and B are valid passive forms.</button>
+      </div>
+      <div class="q-feedback" id="q6-fb"></div>
+    </div>
+
+    <!-- Q7 HARD -->
+    <div class="quiz-item" id="q7">
+      <div class="diff-row"><span class="diff diff-hard">Hard</span></div>
+      <div class="q-text">7. "People think that she stole the money." → Which reporting-verb passive is correct?</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q7',false,'"It is thought" is correct but "she stoles" is not a valid form.')">A. It is thought that she stoles the money.</button>
+        <button class="opt-btn" onclick="answer(this,'q7',true,'Correct! It is thought that she stole the money / She is thought to have stolen the money.')">B. It is thought that she stole the money.</button>
+        <button class="opt-btn" onclick="answer(this,'q7',false,'"She is thought to stolen" is missing "have" — should be "to have stolen".')">C. She is thought to stolen the money.</button>
+        <button class="opt-btn" onclick="answer(this,'q7',false,'"It was thought" would shift the meaning to the past; present is required here.')">D. It was thought that she stole the money.</button>
+      </div>
+      <div class="q-feedback" id="q7-fb"></div>
+    </div>
+
+    <!-- Q8 HARD -->
+    <div class="quiz-item" id="q8">
+      <div class="diff-row"><span class="diff diff-hard">Hard</span></div>
+      <div class="q-text">8. Which sentence uses the <strong>past perfect passive</strong> correctly in context?</div>
+      <div class="options">
+        <button class="opt-btn" onclick="answer(this,'q8',false,'Present perfect passive — no past reference point.')">A. The evidence has been destroyed.</button>
+        <button class="opt-btn" onclick="answer(this,'q8',false,'Simple past passive, not past perfect.')">B. The evidence was destroyed before the trial.</button>
+        <button class="opt-btn" onclick="answer(this,'q8',true,'Correct! "had been destroyed" = past perfect passive, showing it happened before another past event (the trial began).')">C. The evidence had been destroyed before the trial began.</button>
+        <button class="opt-btn" onclick="answer(this,'q8',false,'Modal perfect passive — not past perfect.')">D. The evidence should have been destroyed before the trial.</button>
+      </div>
+      <div class="q-feedback" id="q8-fb"></div>
+    </div>
+
+    <div id="score-bar">
+      <div id="score-num"></div>
+      <div id="score-msg"></div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+  /* REVEAL */
+  function reveal(btn) {
+    const ans = btn.nextElementSibling;
+    const open = ans.style.display === 'block';
+    ans.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? 'Show Answer' : 'Hide Answer';
+  }
+
+  /* QUIZ */
+  const scores = {};
+  const total = 8;
+
+  function answer(btn, qid, correct, feedback) {
+    if (scores[qid] !== undefined) return;
+    scores[qid] = correct ? 1 : 0;
+    btn.closest('.options').querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    const fb = document.getElementById(qid + '-fb');
+    fb.textContent = feedback;
+    fb.className = 'q-feedback show ' + (correct ? 'ok' : 'no');
+    if (Object.keys(scores).length === total) showScore();
+  }
+
+  function showScore() {
+    const n = Object.values(scores).reduce((a, b) => a + b, 0);
+    const bar = document.getElementById('score-bar');
+    bar.style.display = 'flex';
+    document.getElementById('score-num').textContent = n + ' / ' + total;
+    const msgs = [
+      'Keep reviewing — go back to the recap and try again.',
+      'Some gaps to address — re-read Section C and retry.',
+      'Decent effort — watch out for the harder forms.',
+      'Decent effort — watch out for the harder forms.',
+      'Good work — review any questions you got wrong.',
+      'Good work — review any questions you got wrong.',
+      'Strong performance! Nearly there.',
+      'Excellent — just one slip.',
+      'Perfect score! 🎉'
+    ];
+    document.getElementById('score-msg').textContent = msgs[n];
+    bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+</body>
+</html>
